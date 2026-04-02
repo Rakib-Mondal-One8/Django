@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First App</title>
+    <style>
+    table {
+      width: 60%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+    }
+
+    th, td {
+      border: 1px solid #333;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #333;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+    <h1>This is Home Page !!</h1>
+
+{#    <h2>Author : {{ author }}</h2>#}
+{#    <h2>Age : {{ age }}</h2>#}
+{#    <h2>Array : {{ arr }}</h2>#}
+
+    {#Conditional Statement#}
+{#    {% if age >= 20 %}#}
+{#        <h3>You will get driving license</h3>#}
+{#    {% elif age >= 10 and age <= 19 %}#}
+{#        <h3>You will not get Driving license</h3>#}
+{#    {% else %}#}
+{#        <h3>You're a child</h3>#}
+{#    {% endif %}#}
+
+{#    For Loop#}
+
+
+<body>
+
+  <table>
+    <tr>
+      <th>Course ID</th>
+      <th>Course Name</th>
+      <th>Course Fees</th>
+    </tr>
+      {% for course in courses %}
+    <tr>
+
+        <td>{{ course.id }}</td>
+        <td>{{ course.name }}</td>
+        <td>{{ course.fees }}</td>
+
+    </tr>
+       {% endfor %}
+  </table>
+
+    {{ arr | join:"-" }}
+{#    {{ dt | date }}#}
+
+{#    {{ "Eren----Yager" | cut:"-"}}#}
+
+ {{ arr | length }}
+
+<h1>{{ "Happy Coding ,Learning Web Development Using Python is really very amazing !!" | truncatechars:20}}</h1>
+
+</body>
+</html>
