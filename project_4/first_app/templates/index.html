@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>This is Home Page From First APP</h1>
+
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">User ID</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+    <tr>
+        <th scope="row">{{ user.id }}</th>
+        <td>{{ user.first }}</td>
+        <td>{{ user.last }}</td>
+        <td>{{ user.handle }}</td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+
+    <img src="{% static 'images/bird_02.avif' %}" alt="" height="200" width="300">
+{% endblock %}
+
+
+
+
