@@ -1,0 +1,25 @@
+<!-- @format -->
+
+{% extends "base.html" %} {% block content %}
+<h1>This is APP_01 Index Page !!</h1>
+
+<div class="container mt-5">
+  <div class="row justify-content-center g-0">
+    {% for meal in data %}
+    <div class="col-md-3 d-flex justify-content-center mb-3">
+      <div class="card" style="width: 18rem">
+        <img src="{{meal.strMealThumb}}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{meal.strMeal}}</h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card’s content.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}
