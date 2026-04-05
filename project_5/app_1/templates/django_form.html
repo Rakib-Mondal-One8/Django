@@ -3,7 +3,7 @@
 {% block content %}
 
 {% load crispy_forms_tags %}
-<form method="POST" action="" style="width: 50%; width: 500px; margin: auto" class="p-5">
+<form method="POST" action="" style="width: 50%; width: 500px; margin: auto" class="p-5" enctype="multipart/form-data" >
     {% csrf_token %}
     {{form | crispy}}
     <button type="submit" class="btn btn-primary mt-2">Submit</button>
