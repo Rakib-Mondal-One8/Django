@@ -1,11 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>This is Home Page !!</h1>
-</body>
-</html>
+<!-- @format -->
+
+{% extends "base.html" %} {% block content %} {% if data %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div style="width: 70%">
+    <table class="table table-striped-columns table-bordered text-center">
+      <thead class="table-dark">
+        <tr>
+          <td>Roll No</td>
+          <td>Name</td>
+          <td>Fathers Name</td>
+          <td>Address</td>
+          <td>Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for val in data %}
+        <tr>
+          <td>{{val.roll}}</td>
+          <td>{{val.name}}</td>
+          <td>{{val.fathers_name}}</td>
+          <td>{{val.address}}</td>
+          <td>
+            <a class="btn btn-primary" href="{% url 'delete_student' val.roll %}">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% else %}
+<h3>No data available to show !</h3>
+{% endif %} {% endblock content %}
