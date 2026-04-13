@@ -21,6 +21,8 @@ def signup(request):
 
 
 def user_login(request):
+    if(request.user.is_authenticated):
+        return redirect('profile')
     if(request.method == 'POST'):
         form = AuthenticationForm(request=request,data=request.POST)
         if(form.is_valid()):
@@ -33,9 +35,9 @@ def user_login(request):
                 messages.success(request, "Logged In successfully!")
                 return redirect('profile')
             else:
+                messages.warning(request, "User is not registered!")
                 return redirect('signup')
-    else:
-        form = AuthenticationForm(request=request)
+    else: form = AuthenticationForm(request=request)
 
     return render(request,'login.html',{'form':form})
 

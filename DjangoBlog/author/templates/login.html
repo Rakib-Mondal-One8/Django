@@ -21,7 +21,7 @@
      <form method="POST" action="" style="width: 50%;margin: auto" novalidate>
         <h1>Login Page</h1>
         {% csrf_token %}
-        {{ form|crispy }}
+        {{ form | crispy }}
         <button class="btn btn-primary" type="submit">Submit</button>
     </form>
 {% endblock content %}

@@ -27,7 +27,7 @@
       <div class="card-body">
         <h5 class="card-title">{{post.title}}</h5>
         <p class="card-text">{{post.content}}</p>
-        <p>Author : {{request.user}}</p>
+        <p>Author : {{post.author.first_name}} {{post.author.last_name}}</p>
         <p>
           Category : {% for cat in post.category.all %}
           <button class="btn btn-primary btn-sm m-2" disabled>

@@ -2,12 +2,16 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<h1>Profile Edit Page</h1>
 
-<a href="{% url 'passchange' %}" class="btn btn-warning">Change Password</a>
+
+<div style="width: 50%;margin: auto">
+    <h1>Profile Edit Page</h1>
+    <a href="{% url 'passchange' %}" class="btn btn-warning">Change Password</a>
+</div>
 
 
 <form method="POST" action="" style="width: 50%;margin: auto" novalidate>
+    
         {% csrf_token %}
         {{ form | crispy }}
         <button class="btn btn-info" type="submit">Submit</button>

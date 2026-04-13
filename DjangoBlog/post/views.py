@@ -25,6 +25,7 @@ def edit_post(request,id):
     if(request.method == 'POST'):
         form = forms.PostForm(request.POST,instance=post)
         if(form.is_valid()):
+            # form.instance.author = request.user
             form.save()
             return redirect('profile')
     else:
