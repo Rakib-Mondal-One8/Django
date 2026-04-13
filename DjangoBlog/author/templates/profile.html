@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if messages %}
+        {% for message in messages %}
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src=""
+                         class="rounded me-2" alt="...">
+                    <strong class="me-auto">Bootstrap</strong>
+                    <small>11 mins ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <h1>Profile Page</h1>
+    <a href="{% url 'edit' %}" class="btn btn-info">Edit Profile</a>
+
+<div class="d-flex flex-wrap justify-content-center px-5 pt-5">
+  {% for post in data %}
+  <div class="col-sm-3">
+    <div class="card m-2">
+      <div class="card-body">
+        <h5 class="card-title">{{post.title}}</h5>
+        <p class="card-text">{{post.content}}</p>
+        <p>Author : {{request.user}}</p>
+        <p>
+          Category : {% for cat in post.category.all %}
+          <button class="btn btn-primary btn-sm m-2" disabled>
+            {{cat.name}}
+          </button>
+          {% endfor %}
+        </p>
+        <a href="{% url 'edit_post' post.id %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'delete_post' post.id %}" class="btn btn-danger"
+          >Delete</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}
