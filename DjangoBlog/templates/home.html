@@ -3,7 +3,7 @@
 {% extends "base.html" %} {% block content %}
 
 <div class="d-flex flex-wrap pt-5 px-4">
-  <div class="col-2">
+  <div class="card col-2">
     {% for category in categories %}
     <div class="form-check">
       <input
@@ -13,20 +13,25 @@
         id="{{category.id}}"
         checked />
       <label class="form-check-label" for="{{category.id}}">
-        <a href="{% url 'category_search' category.slug %}">{{category.name}}</a>
+        <a href="{% url 'category_search' category.slug %}" class="text-decoration-none text-dark">{{category.name}}</a>
       </label>
     </div>
     {% endfor %}
   </div>
   <div class="col-10">
-    <h2>{{data | length}} results found</h2>
+    <div class="mx-5">
+      <h2>{{data | length}} results found</h2>
+    </div>
+     
     <div class="d-flex flex-wrap justify-content-center px-5">
+     
       {% for post in data %}
-      <div class="col-sm-3">
+      <div class="col-sm-3 mt-5">
         <div class="card m-2">
+            <img src="{{post.image.url}}" alt="" style="margin: 10px;height: 200px;">
           <div class="card-body">
-            <h5 class="card-title">{{post.title}}</h5>
-            <p class="card-text">{{post.content}}</p>
+            <h5 class="card-title"> <a href="{%url 'details_post' post.id %}" class="text-decoration-none text-dark">{{post.title}}</a></h5>
+            <p class="card-text">{{post.content | truncatewords:10}}</p>
             <p>Author : {{post.author.first_name}} {{post.author.last_name}}</p>
             <p>
               Category : {% for cat in post.category.all %}

@@ -24,9 +24,10 @@
   {% for post in data %}
   <div class="col-sm-3">
     <div class="card m-2">
+      <img src="{{post.image.url}}" alt="" style="margin: 10px;height: 200px;">
       <div class="card-body">
         <h5 class="card-title">{{post.title}}</h5>
-        <p class="card-text">{{post.content}}</p>
+        <p class="card-text">{{post.content | truncatewords:10}}</p>
         <p>Author : {{post.author.first_name}} {{post.author.last_name}}</p>
         <p>
           Category : {% for cat in post.category.all %}

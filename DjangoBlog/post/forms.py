@@ -26,3 +26,14 @@ class PostForm(forms.ModelForm):
             "image": {"required": "you must provide an image link!"},
             "content": {"required": "you must write some content!"},
         }
+
+class CommentForm(forms.ModelForm):
+    
+    class Meta:
+        model = models.Comment
+        exclude = ['post']
+        labels = {
+            'name' : 'Name',
+            'email':'Email',
+            'comment': 'Comment'
+        }
