@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %} 
+{% if messages %}
+        {% for message in messages %}
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src=""
+                         class="rounded me-2" alt="...">
+                    <strong class="me-auto">Bootstrap</strong>
+                    <small>11 mins ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% load crispy_forms_tags %}
+    <div class="mt-4" style="width: 50%; margin: auto">
+        <form method="POST" action="{% url 'musician_index' %}">
+            {% csrf_token %} {{ form | crispy }}
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+{% endblock content %}

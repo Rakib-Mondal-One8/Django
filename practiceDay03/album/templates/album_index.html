@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block content %} {% load crispy_forms_tags %}
+    <div class="mt-4" style="width: 50%; margin: auto">
+        <form method="POST" action="{% url 'album_index' %}">
+            {% csrf_token %} {{ form | crispy }}
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+{% endblock content %}

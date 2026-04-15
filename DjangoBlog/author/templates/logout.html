@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+<div style="width: 50%;margin: auto">
+    <h1>Do you really want to Logout ??</h1>
+</div>
+
+
+<form method="POST" action="" style="width: 50%;margin: auto" novalidate>
+        
+        {% csrf_token %}
+        <button class="btn btn-info" type="submit">Submit</button>
+    </form>
+{% endblock content %}
