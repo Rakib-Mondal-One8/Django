@@ -1,0 +1,166 @@
+<!-- @format -->
+
+{% extends "base.html" %} {% block content %}
+{% comment %} <div class="d-flex flex-wrap px-5 pt-3 align-items-center">
+  <div class="row mt-5 g-4">
+    <!-- LEFT: Image -->
+    <div class="col-md-6">
+      {% if object.image %}
+      <img src="{{ object.image.url }}" class="img-fluid rounded shadow-sm" />
+      {% endif %}
+    </div>
+
+    <!-- RIGHT: Info -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 p-4">
+        <!-- Car Name -->
+        <h2 class="fw-bold mb-2">{{ object.name }}</h2>
+
+        <!-- Model Name -->
+        <h6 class="text-muted mb-3">Model: {{ object.model_name }}</h6>
+
+        <!-- Price -->
+        <h4 class="text-success mb-3">₹ {{ object.price }}</h4>
+
+        <!-- Brand -->
+        <p class="mb-2"><strong>Brand:</strong> {{ object.brand.name }}</p>
+
+        <!-- Quantity -->
+        <p class="mb-2"><strong>Available:</strong> {{ object.quantity }}</p>
+
+        <!-- Description -->
+        <p class="text-muted mt-3">{{ object.description }}</p>
+
+        <!-- Buttons -->
+        <div class="d-flex gap-2 mt-4">
+          {% if object.quantity %}
+          <a href="{% url 'order' object.id %}" class="btn btn-primary px-4">Buy Now</a>
+          {% else %}
+          <!-- Disabled Button -->
+          <button class="btn btn-secondary w-100 mt-3 " disabled>
+            Not Available
+          </button>
+          {% endif %}
+          <a href="{% url 'home' %}" class="btn btn-outline-secondary">Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMENT SECTION -->
+
+  <div class="mt-5">
+    <h4 class="mb-4">Customer Reviews 💬</h4>
+
+    <!-- Add Comment -->
+    {% if user.is_authenticated %}
+    <form method="POST" class="mb-4">
+      {% csrf_token %}
+      <textarea
+        name="text"
+        class="form-control mb-2"
+        placeholder="Write your comment..."
+        required></textarea>
+      <button type="submit" class="btn btn-primary">Post Comment</button>
+    </form>
+    {% else %}
+    <p><a href="{% url 'login' %}">Login</a> to write a comment.</p>
+    {% endif %}
+
+    <!-- Show Comments -->
+    {% for comment in comments %}
+    <div class="card mb-3 p-3 shadow-sm">
+      <strong>{{ comment.user.username }}</strong>
+      <small class="text-muted ms-2">
+        {{ comment.created_at|date:"M d, Y H:i" }}
+      </small>
+      <p class="mt-2 mb-0">{{ comment.text }}</p>
+    </div>
+    {% empty %}
+    <p>No comments yet. Be the first! 🚀</p>
+    {% endfor %}
+  </div>
+</div> {% endcomment %}
+
+<div class="container px-5 pt-3">
+
+  <!-- CAR DETAILS -->
+  <div class="row mt-5 g-4">
+
+    <!-- LEFT: Image -->
+    <div class="col-md-6">
+      {% if object.image %}
+      <img src="{{ object.image.url }}" class="img-fluid rounded shadow-sm" />
+      {% endif %}
+    </div>
+
+    <!-- RIGHT: Info -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 p-4">
+
+        <h2 class="fw-bold mb-2">{{ object.name }}</h2>
+        <h6 class="text-muted mb-3">Model: {{ object.model_name }}</h6>
+
+        <h4 class="text-success mb-3">₹ {{ object.price }}</h4>
+
+        <p><strong>Brand:</strong> {{ object.brand.name }}</p>
+        <p><strong>Available:</strong> {{ object.quantity }}</p>
+
+        <p class="text-muted mt-3">{{ object.description }}</p>
+
+        <!-- Buttons -->
+        <div class="d-flex gap-2 mt-4">
+          {% if object.quantity > 0 %}
+            <a href="{% url 'order' object.id %}" class="btn btn-primary px-4">
+              Buy Now
+            </a>
+          {% else %}
+            <button class="btn btn-secondary px-4" disabled>
+              Not Available
+            </button>
+          {% endif %}
+
+          <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+            Back
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COMMENT SECTION (SEPARATE) -->
+  <div class="mt-5">
+
+    <h4 class="mb-4">Customer Reviews 💬</h4>
+
+    {% if user.is_authenticated %}
+    <form method="POST" class="mb-4">
+      {% csrf_token %}
+      <textarea name="text" class="form-control mb-2"
+        placeholder="Write your comment..." required></textarea>
+      <button type="submit" class="btn btn-primary">
+        Post Comment
+      </button>
+    </form>
+    {% else %}
+    <p><a href="{% url 'login' %}">Login</a> to write a comment.</p>
+    {% endif %}
+
+    {% for comment in comments %}
+    <div class="card mb-3 p-3 shadow-sm">
+      <strong>{{ comment.user.username }}</strong>
+      <small class="text-muted ms-2">
+        {{ comment.created_at|date:"M d, Y H:i" }}
+      </small>
+      <p class="mt-2 mb-0">{{ comment.text }}</p>
+    </div>
+    {% empty %}
+    <p>No comments yet. Be the first! 🚀</p>
+    {% endfor %}
+
+  </div>
+
+</div>
+{% endblock content %}
